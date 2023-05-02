@@ -1,4 +1,5 @@
 import React from 'react';
+import Imagem from '../components/imgInicial.svg';
 import { useState } from 'react';
 import blogFetch from '../axios/config';
 
@@ -10,9 +11,15 @@ const Register = () => {
   const [password, setPassword] = useState();
   const [confirm, setConfirm] = useState();
 
+  function handleBlur({target}) {
+    const emailFormat = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\w{2,3})+$/;
+    const validation = emailFormat.test(target.value);
+    console.log(validation);
+  }
+
     const cadastrarUsuario = async(e) => {
 
-      //confirmar password
+    //confirmar password
       if(password !== confirm){
         alert("Erro na senha")
       } else {
@@ -26,7 +33,12 @@ const Register = () => {
         }
     } 
 
-  return (
+  return ( 
+  <>
+    <main>
+    <section className='box-border bg-[#fff] max-w-7xl mx-auto flex mt-10' >
+      <img src={Imagem} alt="Desenho colorido de livros, tinta, mulher, caneta tinteiro" className='max-w-[100%]' />
+    </section>
     <section>
       <img src={logo} alt="Logomarca da página publishIn" />
       <form action="" onSubmit={cadastrarUsuario}>
@@ -38,6 +50,7 @@ const Register = () => {
           name='email'
           placeholder='E-mail'
           value={email || ""}
+          onBlur={handleBlur}
           onChange={(e) => setEmail(e.target.value)}
           required
           />
@@ -70,6 +83,8 @@ const Register = () => {
       </form>
       
     </section>
+    </main>
+    </>
   )
 }
 
