@@ -1,15 +1,21 @@
 import React from 'react';
+import Login from './components/Login';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import './index.css';
 import Nav from './components/Nav';
 import Register from './components/Register';
-import './index.css';
 
 const App = () => {
-  return( 
-  <div>
-    
-    <Nav />
-    <Register />
-  </div>)
-}
+  return (
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/" element={ <Login />} />
+        <Route path="/register" element={<Register/>} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;
